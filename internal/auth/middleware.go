@@ -4,7 +4,6 @@ import (
 	"context"
 	"hackernews/internal/pkg/jwt"
 	"hackernews/internal/users"
-	"log"
 	"net/http"
 	"strconv"
 )
@@ -19,8 +18,6 @@ func Middleware() func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			header := r.Header.Get("Authorization")
-
-			log.Print("Authorization string is : ",header)
 
 			// Allow unauthenticated users in
 			if header == "" {
